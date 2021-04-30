@@ -36,18 +36,21 @@ const fork = reject => resolve => b => b.fork(reject, resolve)
 
 const asyncPipe = fns => x => fns.reduce(async (v, f) => f(await v), x)
 
+const pipe = fns => x => fns.reduce((v, f) => f(v), x)
+
 
 module.exports = {
-    curry,
-    log,
-    map,
-    filter,
-    reduce,
-    Task,
-    Either,
-    fold,
-    chain,
-    ap,
-    fork,
-    asyncPipe
+  curry,
+  log,
+  map,
+  filter,
+  reduce,
+  Task,
+  Either,
+  fold,
+  chain,
+  ap,
+  fork,
+  asyncPipe,
+  pipe
 }
