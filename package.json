@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tarasowski/ramda-x.git"
+    "url": "git+https://github.com/tarasowski/fpg.git"
   },
   "keywords": [
     "ramda",
@@ -21,9 +21,9 @@
   "author": "Dimitri Tarasowski <dimitri+npm@tarasowski.de>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tarasowski/ramda-x/issues"
+    "url": "https://github.com/tarasowski/fpg/issues"
   },
-  "homepage": "https://github.com/tarasowski/ramda-x#readme",
+  "homepage": "https://github.com/tarasowski/fpg#readme",
   "devDependencies": {
     "tape": "^4.9.1"
   }
