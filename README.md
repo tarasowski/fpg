@@ -1,33 +1,73 @@
-# Ramda X
+# FPG (Functional Programming)
 
-### Important: Don't use it for production projects. There are always some breaking changes.
+## Motivation
 
-Ramda X is a super small API with only 10 most important methods for functional programming. Original Ramda library is too big and abstracts almost everything away from the JavaScript language. That's why Ramda X uses the most important methods and leaves everything as it is. All implemented methods are auto-curried!!!
+I needed something tiny to work on my projects. I wanted to avoid complex
+functional programming constructs. 
 
 
 **Important:** Data comes last!
 
 ### Implemented API methods:
 
-- **I.** curry() 
-- **II.** compose()
-- **III.** map() -> works only on arrays
-- **IV.** filter() -> works only on arrays
-- **V.** prop() -> works only on objects `prop('name')({name: 'Dimitri', location: 'Berlin'})`
-- **VI.** propEq() -> works only on objects `propEq('location', 'Berlin')`
-- **VII.** reduce() -> works only on arrays `reduce(fn, null || 'acc value', {location: Berlin})`
-- **VIII.** Task() || Task.of(x) || Task.map(), Task.chain(), Task.ap() -> for lazy evaluation and isolation of side effects
-- **IX.** Either.Right(x) || Either.Left(x) || Either.fromNullable(x) || Either.of(x) || Either.try(f) -> Either captures the concept of errors
 
-### Methods on the waiting list:
-- composeP() -> composition with Promises
-- propNotEq() -> removing a an element from an array
+// Foldable f :: f (Any -> Any) -> a -> b
+`pipe()`
 
-### Additional methods for debugging Ramda X
+// Functor, Task, Either f :: (a -> b) -> f a -> f b
+`map()` :: Functor f => (a -> b) -> f a -> f b
 
-- trace() -> can be used to debug compose/pipe `trace('label')(value)`
+// Filterable f :: (a -> Boolean) -> f a -> f a
+`filter()`
 
-If you want the full suite, just use the original [Ramda](https://ramdajs.com). 
+// Chain m :: (a -> m b) -> m a -> m b
+`chain()`
+
+// Foldable f :: (b, a -> b) -> b -> f a -> b
+`reduce()`
+
+// log :: a -> IO a
+`log()`
+
+// Either.Left :: a -⁠> Either a b
+`Either.Reft()`  
+
+// Either.Right :: b -⁠> Either a b
+`Either.Right()`
+
+// Either.fromNullable :: a -⁠> Either a b
+`Either.formNullable()`
+
+// Either.of :: a -> Either a
+`Either.of()`
+
+// Either.try :: a -> Either a b
+`Either.try()`
+
+// Foldable f :: f (a -> Promise) -> a -> Promise a Error
+`asyncPipe()`
+
+// Either e :: e -> a
+`fold()`
+
+// Any a :: a -> Task a
+`Task.of()`
+
+// Task a :: -> Task a -> Task a
+`Task.map()`
+
+// Chain m :: (a -> m b) -> m a -> m b
+`Task.chain()`
+
+// Task t :: f (a -> b) -> t a -> f b
+`Task.ap()`
+
+// Task f :: Task a -> Error
+`Task.rejected()`
+
+// IO
+`Task.fork()`
+
 
 ## Algebraic Typologies
 
@@ -61,7 +101,7 @@ eitherToBox(fromNullable(null))
 
 ---
 
-## When to use what? - Code that never fails!
+## Code that never fails!
 
 ```js
 const { Task, Either, Box, compose, map, fold, chain, ap, fork, trace } = require('ramda-x')

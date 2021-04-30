@@ -1,9 +1,7 @@
 const Task = require('./task')
 const Either = require('./either')
-const List = require('./list')
-const deepFreeze = require('./deep-freeze')
 
-const trace = label => value => (console.log(`${label}: ${JSON.stringify(value, null, 2)}`), value)
+const log = label => value => (console.log(`${label}: ${JSON.stringify(value, null, 2)}`), value)
 
 const curry = (fn) => {
     return function f1(...args) {
@@ -13,8 +11,6 @@ const curry = (fn) => {
     }
 }
 
-const compose = (...fns) => x =>
-    fns.reduceRight((v, f) => f(v), x)
 
 const map = curry((f, x) =>
     Array.isArray(x)
@@ -38,30 +34,20 @@ const ap = b2 => e => e.ap(b2)
 
 const fork = reject => resolve => b => b.fork(reject, resolve)
 
-const prop = curry((property, data) => data[property])
-
-const propEq = curry((key, value, data) => {
-    return data[key] === value
-        ? true
-        : false
-})
+const asyncPipe = fns => x => fns.reduce(async (v, f) => f(await v), x)
 
 
 module.exports = {
     curry,
-    trace,
-    compose,
+    log,
     map,
     filter,
-    prop,
-    propEq,
     reduce,
     Task,
     Either,
-    List,
     fold,
     chain,
     ap,
     fork,
-    deepFreeze
+    asyncPipe
 }
