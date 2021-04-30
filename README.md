@@ -14,58 +14,58 @@ functional programming constructs.
 Foldable f :: f (Any -> Any) -> a -> b\
 `pipe()`
 
-Functor, Task, Either f :: (a -> b) -> f a -> f b
+Functor, Task, Either f :: (a -> b) -> f a -> f b\
 `map()` :: Functor f => (a -> b) -> f a -> f b
 
-Filterable f :: (a -> Boolean) -> f a -> f a
+Filterable f :: (a -> Boolean) -> f a -> f a\
 `filter()`
 
-Chain m :: (a -> m b) -> m a -> m b
+Chain m :: (a -> m b) -> m a -> m b\
 `chain()`
 
-Foldable f :: (b, a -> b) -> b -> f a -> b
+Foldable f :: (b, a -> b) -> b -> f a -> b\
 `reduce()`
 
-log :: a -> IO a
+log :: a -> IO a\
 `log()`
 
-Either.Left :: a -⁠> Either a b
+Either.Left :: a -⁠> Either a \
 `Either.Reft()`  
 
-Either.Right :: b -⁠> Either a b
+Either.Right :: b -⁠> Either a \b
 `Either.Right()`
 
-Either.fromNullable :: a -⁠> Either a b
+Either.fromNullable :: a -⁠> Either a \
 `Either.formNullable()`
 
-Either.of :: a -> Either a
+Either.of :: a -> Either a\
 `Either.of()`
 
-Either.try :: a -> Either a b
+Either.try :: a -> Either a b\
 `Either.try()`
 
-Foldable f :: f (a -> Promise) -> a -> Promise a Error
+Foldable f :: f (a -> Promise) -> a -> Promise a Error\
 `asyncPipe()`
 
-Either e :: e -> a
+Either e :: e -> a\
 `fold()`
 
-Any a :: a -> Task a
+Any a :: a -> Task a\
 `Task.of()`
 
-Task a :: -> Task a -> Task a
+Task a :: -> Task a -> Task a\
 `Task.map()`
 
-Chain m :: (a -> m b) -> m a -> m b
+Chain m :: (a -> m b) -> m a -> m b\
 `Task.chain()`
 
-Task t :: f (a -> b) -> t a -> f b
+Task t :: f (a -> b) -> t a -> f b\
 `Task.ap()`
 
-Task f :: Task a -> Error
+Task f :: Task a -> Error\
 `Task.rejected()`
 
-IO
+Task IO\
 `Task.fork()`
 
 
