@@ -32,7 +32,7 @@ log :: a -> IO a\
 Either.Left :: a -⁠> Either a \
 `Either.Reft()`  
 
-Either.Right :: b -⁠> Either a \b
+Either.Right :: b -⁠> Either ab\
 `Either.Right()`
 
 Either.fromNullable :: a -⁠> Either a \
