@@ -2,7 +2,9 @@ const Right = x =>
     ({
         ap: b2 => b2.map(x),
         chain: f => f(x),
+        chainLeft: f => Right(x),
         map: f => Right(f(x)),
+        mapLeft: f => Right(x),
         fold: (f, g) => g(x),
     })
 

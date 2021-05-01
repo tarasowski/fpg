@@ -19,13 +19,9 @@ functional programming constructs and libraries.
 
 `mapLeft()`
 
-`filter()`
-
 `chain()`
 
 `chainLeft()`
-
-`reduce()`
 
 `log()`
 
@@ -51,6 +47,45 @@ functional programming constructs and libraries.
 
 `Task.fork()`
 
+
+## Left / Right Juggling
+
+```js
+const { Either, asyncPipe, pipe, map, fold, chain, mapLeft } = require("fpg")
+
+const data = [{name: "Dimitri", city: "Berlin"}, {name: "Vlad", city:
+                                                  "Stuttgart"}]
+
+const program = pipe([
+  map (x => ({name: x.name + " Tarasowski", city: x.city})),
+  Either.of,
+  map (y => y.map(x => ({name: x.name, city: x.city + " City" }))),
+  chain (y => Either.Left(y)),
+  mapLeft (x => x.map(i => ({name: i.name, city: i.city, message: "success"}))),
+  fold (x => console.log("from left" + JSON.stringify(x)), x =>
+        console.log("from right" + JSON.stringify(x)))
+])
+// from left[{"name":"Dimitri Tarasowski","city":"Berlin
+              City","message":"success"},{"name":"Vlad
+                                          Tarasowski","city":"Stuttgart
+                                          City","message":"success"}]
+
+
+program(data)
+
+const program2 = asyncPipe([
+  Either.tryCatch (x => x.message.city.name),
+  map (x => x.data),
+  fold (x => console.log("from left: left active -> error"), x => console.log("from right: right not
+                                                                   active ->
+                                                                   error")) 
+])
+// from left: left active -> error 
+
+
+program2(data)
+```
+---
 
 ## Algebraic Typologies
 

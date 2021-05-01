@@ -11,29 +11,15 @@ const curry = (fn) => {
     }
 }
 
-const map = curry((f, x) =>
-    Array.isArray(x)
-        ? x.reduce((a, c) => a.concat([f(c)]), []) // map over regular arrays map(console.log, [1, 2, 3])
-        : x.map(f) // map over types Either, Task // compose(map(f),map(f),fromNullable)(data)
-)
+const map = curry((f, x) => x.map(f))
 
-const reduce = curry((fn, config, x) =>
-    config === null
-        ? x.reduce(fn)
-        : x.reduce(fn, config))
-
-const filter = curry((pred, xs) =>
-    xs.reduce((newArr, item) => pred(item) 
-      ? newArr.concat([item]) 
-      : newArr, []))
+const mapLeft = f => e => e.mapLeft(f)
 
 const fold = (f, g) => e => e.fold(f, g)
 
 const chain = f => e => e.chain(f)
 
 const chainLeft = f => e => e.chainLeft(f)
-
-const mapLeft = f => e => e.map(f)
 
 const ap = b2 => e => e.ap(b2)
 
@@ -52,8 +38,6 @@ module.exports = {
   mapLeft,
   chain,
   chainLeft,
-  filter,
-  reduce,
   fold,
   ap,
   Task,
