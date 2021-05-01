@@ -65,10 +65,9 @@ const program = pipe([
         console.log("from right: " + JSON.stringify(x)))
 ])
 
-// from left: "No city !!!"
-
 
 program(data)
+// from left: "No city !!!"
 
 const program2 = asyncPipe([
   Either.tryCatch (x => x.message.city.name),
@@ -77,12 +76,43 @@ const program2 = asyncPipe([
         x => console.log("from right: right not active -> error")) 
 ])
 
-// from left: left active -> error 
-
 
 program2(data)
+// from left: left active -> error 
 ```
 ---
+
+## AnyncPipe
+
+```js
+const fetch = () =>
+  new Promise((res, rej) => res([{userId: 1, name: "Dimitri"},{ userId: 2, name:
+                                                               "Joel"}]))
+
+
+const save = data =>
+  new Promise((res, rej) => 
+                  rej(new Error("Something went wrong with saving user data!")))
+      .then(x => Either.Right(x))
+      .catch(e => Either.Left(e.message))
+
+
+const program3 = asyncPipe([
+  fetch,
+  Either.of,
+  map (x => x.map(u => ({...u, name: u.name + "!!!"}))),
+  chain (save),
+  fold (x => console.log("from left: " + JSON.stringify(x)),
+                x => console.log("from right: " + JSON.stringify(x)))
+])
+
+
+program3()
+// from left: "Something went wrong with saving user data!"
+
+```
+---
+
 
 ## Algebraic Typologies
 
