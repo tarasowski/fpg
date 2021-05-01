@@ -15,7 +15,7 @@ functional programming constructs and libraries.
 
 `asyncPipe()`
 
-`map()` 
+`map()` :: maps a function to a type inside Either, Array, Object, Task, Promise (.map is the js function to map over arrays)
 
 `mapLeft()`
 
@@ -56,16 +56,16 @@ const { Either, asyncPipe, pipe, map, fold, chain, mapLeft } = require("fpg")
 const data = [{name: "Dimitri", city: "Berlin"}, {name: "Vlad", city: "Stuttgart"}]
 
 const program = pipe([
-  map (x => ({name: x.name + " Tarasowski", city: x.city})),
+  map (x => x.map(e => ({name: e.name + " Tarasowski", city: e.city}))),
   Either.of,
-  map (y => y.map(x => ({name: x.name, city: x.city + " City" }))),
-  chain (y => Either.Left(y)),
-  mapLeft (x => x.map(i => ({name: i.name, city: i.city, message: "success"}))),
-  fold (x => console.log("from left" + JSON.stringify(x)), 
-        x => console.log("from right" + JSON.stringify(x)))
+  chain (x => (x || {}).city || Either.Left("No city")),
+  mapLeft (y => y + "!!!"),
+  map (x => x.map(i => ({name: i.name, city: i.city, message: "success"}))),
+  fold (x => console.log("from left: " + JSON.stringify(x)), x =>
+        console.log("from right: " + JSON.stringify(x)))
 ])
 
-// from left[{"name":"Dimitri Tarasowski","city":"Berlin City","message":"success"},{"name":"Vlad Tarasowski","city":"Stuttgart City","message":"success"}]
+// from left: "No city !!!"
 
 
 program(data)

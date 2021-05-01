@@ -11,7 +11,12 @@ const curry = (fn) => {
     }
 }
 
-const map = curry((f, x) => x.map(f))
+const map = f => x => Array.isArray(x) 
+  || typeof(x) === "object" 
+  && x !== null 
+  && !Object.keys(x).join(",").includes("map")
+    ? f(x) 
+    : x.map(f)
 
 const mapLeft = f => e => e.mapLeft(f)
 
