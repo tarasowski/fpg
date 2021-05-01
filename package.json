@@ -1,8 +1,8 @@
 {
   "name": "fpg",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Tiny JavaScript Functional Programming Library",
-  "main": "src/index.js",
+  "main": "dist/bundle.js",
   "scripts": {
     "test": "tape 'src/test/*.test.js'"
   },
@@ -25,6 +25,8 @@
   },
   "homepage": "https://github.com/tarasowski/fpg#readme",
   "devDependencies": {
+    "browserify": "^17.0.0",
+    "rollup": "^2.46.0",
     "tape": "^4.9.1"
   }
 }
