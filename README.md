@@ -48,7 +48,7 @@ functional programming constructs and libraries.
 `Task.fork()`
 
 
-## Left / Right Juggling
+## Either.Left / Either.Right 
 
 ```js
 const { Either, asyncPipe, pipe, map, fold, chain, mapLeft } = require("fpg")
@@ -82,7 +82,7 @@ program2(data)
 ```
 ---
 
-## AnyncPipe
+## anyncPipe
 
 ```js
 const fetch = () =>
