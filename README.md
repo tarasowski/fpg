@@ -53,8 +53,7 @@ functional programming constructs and libraries.
 ```js
 const { Either, asyncPipe, pipe, map, fold, chain, mapLeft } = require("fpg")
 
-const data = [{name: "Dimitri", city: "Berlin"}, {name: "Vlad", city:
-                                                  "Stuttgart"}]
+const data = [{name: "Dimitri", city: "Berlin"}, {name: "Vlad", city: "Stuttgart"}]
 
 const program = pipe([
   map (x => ({name: x.name + " Tarasowski", city: x.city})),
@@ -62,13 +61,11 @@ const program = pipe([
   map (y => y.map(x => ({name: x.name, city: x.city + " City" }))),
   chain (y => Either.Left(y)),
   mapLeft (x => x.map(i => ({name: i.name, city: i.city, message: "success"}))),
-  fold (x => console.log("from left" + JSON.stringify(x)), x =>
-        console.log("from right" + JSON.stringify(x)))
+  fold (x => console.log("from left" + JSON.stringify(x)), 
+        x => console.log("from right" + JSON.stringify(x)))
 ])
-// from left[{"name":"Dimitri Tarasowski","city":"Berlin
-              City","message":"success"},{"name":"Vlad
-                                          Tarasowski","city":"Stuttgart
-                                          City","message":"success"}]
+
+// from left[{"name":"Dimitri Tarasowski","city":"Berlin City","message":"success"},{"name":"Vlad Tarasowski","city":"Stuttgart City","message":"success"}]
 
 
 program(data)
@@ -76,10 +73,10 @@ program(data)
 const program2 = asyncPipe([
   Either.tryCatch (x => x.message.city.name),
   map (x => x.data),
-  fold (x => console.log("from left: left active -> error"), x => console.log("from right: right not
-                                                                   active ->
-                                                                   error")) 
+  fold (x => console.log("from left: left active -> error"), 
+        x => console.log("from right: right not active -> error")) 
 ])
+
 // from left: left active -> error 
 
 
