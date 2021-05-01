@@ -3,7 +3,7 @@
 ## Motivation
 
 I needed something tiny to work on my projects. I wanted to avoid complex
-functional programming constructs. 
+functional programming constructs and libraries.
 
 
 **Important:** Data comes last!
