@@ -1,6 +1,6 @@
 {
   "name": "fpg",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Tiny JavaScript Functional Programming Library",
   "main": "dist/bundle.js",
   "scripts": {
