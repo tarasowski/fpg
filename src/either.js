@@ -1,6 +1,3 @@
-const isNothing = x =>
-    x === null || x === undefined
-
 const Right = x =>
     ({
         ap: b2 => b2.map(x),
@@ -9,17 +6,16 @@ const Right = x =>
         fold: (f, g) => g(x),
     })
 
-
 const Left = x =>
     ({
         ap: b2 => Left(x),
         chain: f => Left(x),
+        chainLeft: f => f(x),
         map: f => Left(x),
+        mapLeft: f => Left(f(x)),
         fold: (f, g) => f(x),
     })
 
-const fromNullable = x =>
-    x === null || x === undefined ? Left(null) : Right(x)
 
 const of = x => Right(x)
 
@@ -35,9 +31,8 @@ const tryCatch = f => x => {
 const Either = {
     Right,
     Left,
-    fromNullable,
     of,
-    try: tryCatch,
+    tryCatch,
 }
 
 module.exports = Either

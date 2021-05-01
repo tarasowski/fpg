@@ -11,61 +11,44 @@ functional programming constructs.
 ### Implemented API methods:
 
 
-Foldable f :: f (Any -> Any) -> a -> b\
 `pipe()`
 
-Functor, Task, Either f :: (a -> b) -> f a -> f b\
-`map()` :: Functor f => (a -> b) -> f a -> f b
-
-Filterable f :: (a -> Boolean) -> f a -> f a\
-`filter()`
-
-Chain m :: (a -> m b) -> m a -> m b\
-`chain()`
-
-Foldable f :: (b, a -> b) -> b -> f a -> b\
-`reduce()`
-
-log :: a -> IO a\
-`log()`
-
-Either.Left :: a -⁠> Either a \
-`Either.Reft()`  
-
-Either.Right :: b -⁠> Either ab\
-`Either.Right()`
-
-Either.fromNullable :: a -⁠> Either a \
-`Either.formNullable()`
-
-Either.of :: a -> Either a\
-`Either.of()`
-
-Either.try :: a -> Either a b\
-`Either.try()`
-
-Foldable f :: f (a -> Promise) -> a -> Promise a Error\
 `asyncPipe()`
 
-Either e :: e -> a\
+`map()` 
+
+`mapLeft()`
+
+`filter()`
+
+`chain()`
+
+`chainLeft()`
+
+`reduce()`
+
+`log()`
+
+`Either.Left()`  
+
+`Either.Right()`
+
+`Either.of()`
+
+`Either.tryCatch()`
+
 `fold()`
 
-Any a :: a -> Task a\
 `Task.of()`
 
-Task a :: -> Task a -> Task a\
 `Task.map()`
 
-Chain m :: (a -> m b) -> m a -> m b\
 `Task.chain()`
 
-Task t :: f (a -> b) -> t a -> f b\
 `Task.ap()`
 
-Task f :: Task a -> Error\
 `Task.rejected()`
 
-Task IO\
 `Task.fork()`
 
 
