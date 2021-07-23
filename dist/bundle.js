@@ -78,6 +78,8 @@ const asyncPipe = fns => x => fns.reduce(async (v, f) => f(await v), x)
 
 const pipe = fns => x => fns.reduce((v, f) => f(v), x)
 
+const head = def => xs => {try { xs[0] } catch(e) {console.log(e); return def} } 
+
 
 module.exports = {
   asyncPipe,
@@ -92,6 +94,7 @@ module.exports = {
   Task,
   fork,
   log,
+  head,
 }
 
 
